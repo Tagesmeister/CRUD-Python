@@ -51,12 +51,11 @@ class DB:
         self.cur.execute(command)
 
         people = self.cur.fetchall()
-        for x in people:
-            print(x)
+        return people
 
     def GetEntryByID(self, id):
         command = "SELECT * FROM person WHERE person_id=?;"
-        self.cur.execute(command, id)
+        self.cur.execute(command, str(id))
         return self.cur.fetchall()
 
     def Update(self, updateData, id):
@@ -71,4 +70,9 @@ class DB:
                 int(id),
             ),
         )
+        self.connection.commit()
+
+    def DeleteById(self, id):
+        command = "DELETE FROM person WHERE person_id = ?;"
+        self.cur.execute(command, (int(id),))
         self.connection.commit()
