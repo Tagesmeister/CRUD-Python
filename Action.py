@@ -28,6 +28,10 @@ while True:
                 input("Phone: "),
             )
             db.CreateEntry(Data)
+        
+        case "3":
+            id = input("ID: ")
+            db.DeleteById()
 
         case "2":
             id = input("ID: ")
@@ -51,6 +55,11 @@ while True:
             )
 
             db.Update(personDB, id)
-
         case "4":
             db.GetAllEntry()
+            
+        case "5":
+            id = input("ID: ")
+            person = db.GetEntryByID(id)
+            print(person)
+
